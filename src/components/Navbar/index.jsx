@@ -4,7 +4,9 @@ import styled from "styled-components";
 
 import { MdMenu, MdClose } from "react-icons/md";
 
-const Nav = styled.nav`
+const Nav = styled.nav.attrs((props) => ({
+  color: props.theme.colors,
+}))`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,26 +14,31 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, goldenrod, gold);
+  color: ${({ color }) => color.richBlack};
+  /* background: ${({ color }) =>
+    `linear-gradient(${color.verdigris}, ${color.electricBlue})`}; */
+  background: #3aafb9;
   box-shadow: 0 2px 2px #1112;
-  padding: 10px 2rem;
-  z-index: 10000;
+  padding: 0.4rem 2rem;
+  z-index: 1000;
 `;
 
 const Ul = styled.ul`
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100vw;
-  height: 60vh;
+  right: 0;
+  width: 60vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: ${({ open }) => (open ? "translateY(0)" : "translateY(-100vh)")};
-  background: linear-gradient(to right, goldenrod, gold);
-  box-shadow: ${({ open }) => (open ? "0 2px 2px #1112" : "none")};
-  transition: transform 0.3s;
+
+  /* background: radial-gradient(#093a3e, #001011); */
+  background: ${({ theme }) => theme.colors.richBlackFogra29};
+  box-shadow: -3px 0 3px #0002;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100vw)")};
+  transition: transform 0.4s;
   transition-delay: ${({ open }) => (open ? "0" : ".3s")};
   z-index: -1000;
 
@@ -53,18 +60,22 @@ const Ul = styled.ul`
 `;
 
 const Li = styled.li`
+  width: 100%;
   list-style-type: none;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin: 6px 0;
-  /* padding: 4px 0; */
-  background: goldenrod;
-  width: 100%;
+  letter-spacing: 7px;
+  padding: 10px 0;
+
+  box-shadow: 0 1px 1px #fff1;
+  &:last-of-type {
+    box-shadow: none;
+  }
+
   text-align: center;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.verdigris};
 
   opacity: ${({ open }) => (open ? 1 : 0)};
-  /* transition: ${({ open }) => (open ? ".3s" : "none")}; */
   transition: opacity 0.3s;
   transition-delay: ${({ open, delay }) => (open ? `${delay}ms` : "none")};
 
@@ -76,21 +87,19 @@ const Li = styled.li`
     margin: 0 0 0 10px;
     width: initial;
     padding: 4px;
+    box-shadow: none;
   }
 `;
 
 const Logo = styled.h1`
-  color: #111;
-  /* font-family: "Lobster", cursive; */
+  color: ${({ theme }) => theme.colors.richBlackFogra29};
   font-family: "Permanent Marker", cursive;
-  /* font-size: 2rem; */
-  /* text-transform: uppercase; */
+  font-size: 32px;
 `;
 
 const WrapperMenuIcon = styled.div`
   display: grid;
   place-content: center;
-  border-radius: 50%;
 
   ${({ theme }) => theme.media.desktop} {
     display: none;
@@ -105,10 +114,10 @@ export const Navbar = () => {
 
   return (
     <Nav open={open}>
-      <Logo>Logo</Logo>
+      <Logo>Logo.</Logo>
       <Ul open={open}>
         {links.map((link, i) => {
-          const delay = (i + 2) * 100;
+          const delay = (i + 3) * 100;
           return (
             <Li open={open} delay={delay} key={i}>
               {link}
@@ -118,9 +127,9 @@ export const Navbar = () => {
       </Ul>
       <WrapperMenuIcon>
         {open ? (
-          <MdClose size={"1.5em"} onClick={toggleMenuIcon} />
+          <MdClose color="#3AAFB9" size={"2em"} onClick={toggleMenuIcon} />
         ) : (
-          <MdMenu size={"1.5em"} onClick={toggleMenuIcon} />
+          <MdMenu color="#001011" size={"2em"} onClick={toggleMenuIcon} />
         )}
       </WrapperMenuIcon>
     </Nav>

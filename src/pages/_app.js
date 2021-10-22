@@ -16,7 +16,11 @@ const GlobalStyle = createGlobalStyle`
 
 const theme = {
   colors: {
-    primary: "#0070f3",
+    richBlackFogra29: "#001011",
+    richBlack: "#093A3E",
+    verdigris: "#3AAFB9",
+    electricBlue: "#64E9EE",
+    paleCerulean: "#97C8EB",
   },
   media: {
     desktop: "@media (min-width: 500px)",

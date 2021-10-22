@@ -4,13 +4,13 @@ const Container = styled.div`
   position: relative;
   color: white;
   width: 100%;
-  height: 200vh;
+  height: 100vh;
 `;
 
 const Hero = styled.div`
   width: 100%;
-  height: 80vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)),
     url("./assets/book-mobile.jpg");
   background-size: cover;
   background-position: center;
@@ -24,10 +24,10 @@ const Hero = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 40px;
+  font-size: 44px;
 
   span {
-    color: goldenrod;
+    color: ${({ theme }) => theme.colors.verdigris};
   }
 
   ${({ theme }) => theme.media.desktop} {
@@ -36,35 +36,41 @@ const Title = styled.h1`
 `;
 
 const Text = styled.p`
-  margin: 1rem 0;
+  color: silver;
   font-size: 14px;
-  color: whitesmoke;
+  margin: 8px 0;
 `;
 
-const Buttom = styled.button`
-  background: linear-gradient(to right, goldenrod, gold);
-  color: #111;
+const Buttom = styled.button.attrs((props) => ({
+  color: props.theme.colors,
+}))`
+  background: ${({ color }) =>
+    `linear-gradient(to right, ${color.verdigris}, ${color.electricBlue})`};
+
+  color: ${({ color }) => color.richBlackFogra29};
   padding: 10px;
   margin-top: 1rem;
   border: none;
   border-radius: 2px;
   text-transform: uppercase;
   font-family: "Poppins", sans-serif;
-  font-size: 0.75rem;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   width: 100%;
+  transition: 0.3s;
 
   &:active {
     transform: scale(0.99);
   }
 
   ${({ theme }) => theme.media.desktop} {
-    cursor: pointer;
-    width: 40%;
+    width: 30%;
+    background: ${({ color }) => color.verdigris};
 
     &:hover {
-      background: linear-gradient(to left, goldenrod, gold);
+      cursor: pointer;
+      background: ${({ color }) => color.electricBlue};
     }
   }
 `;
@@ -80,7 +86,9 @@ export default function Home() {
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi
           eveniet dolores, quisquam alias, eligendi doloribus, nobis fuga quos
           reiciendis aliquam blanditiis fugiat. Dolor saepe, voluptate labore
-          sint ipsam corrupti odio?
+          sint ipsam corrupti odio? Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Excepturi eveniet dolores, quisquam alias, eligendi
+          doloribus, nobis fuga quos reiciendis aliquam blanditiis fugiat.
         </Text>
         <Buttom>Get Started</Buttom>
       </Hero>
