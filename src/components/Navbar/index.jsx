@@ -80,13 +80,14 @@ const Li = styled.li`
   transition-delay: ${({ open, delay }) => (open ? `${delay}ms` : "none")};
 
   ${({ theme }) => theme.media.desktop} {
+    color: ${({ theme }) => theme.colors.richBlackFogra29};
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
     background: none;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 8px;
     width: initial;
-    padding: 4px;
+    padding: 6px 0;
     box-shadow: none;
   }
 `;
