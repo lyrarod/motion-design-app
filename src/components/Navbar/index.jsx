@@ -35,12 +35,6 @@ const Ul = styled.ul`
   transition-delay: ${({ open }) => (open ? "0" : ".3s")};
   z-index: -1000;
 
-  li {
-    /* opacity: ${({ open }) => (open ? 1 : 0)}; */
-    /* transition: opacity 0.3s ease-in-out; */
-    /* transition-delay: ${({ open }) => (open ? ".3s" : "0")}; */
-  }
-
   ${({ theme }) => theme.media.desktop} {
     display: flex;
     flex-direction: row;
@@ -117,7 +111,7 @@ export const Navbar = () => {
           const delay = (i + 2) * 100;
           return (
             <Li open={open} delay={delay} key={i}>
-              {link} {delay}
+              {link}
             </Li>
           );
         })}
