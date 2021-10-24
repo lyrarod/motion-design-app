@@ -19,14 +19,12 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  /* transform: translateY(-60px); */
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: ${({ theme }) => theme.colors.richBlack};
-  /* background: ${({ color }) => color.electricBlue}; */
-  /* background: #3aafb9; */
-  box-shadow: 0 2px 2px #1111;
+  /* background: ${({ theme }) => theme.colors.electricBlue}; */
+  box-shadow: 0 2px 2px #0002;
   padding: 4px 2rem;
   z-index: 1000;
 
@@ -35,7 +33,7 @@ const Nav = styled.nav`
   animation-name: ${animate};
   animation-duration: 2s;
   animation-timing-function: ease-in;
-  animation-delay: 1s;
+  animation-delay: 0.9s;
   animation-fill-mode: forwards;
 `;
 
@@ -50,9 +48,10 @@ const Ul = styled.ul`
   align-items: center;
   justify-content: center;
 
-  /* background: radial-gradient(#093a3e, #001011); */
-  background: ${({ theme }) => theme.colors.richBlackFogra29};
-  box-shadow: -3px 0 3px #0002;
+  background: ${({ theme }) =>
+    `radial-gradient(${theme.colors.richBlack}, ${theme.colors.richBlackFogra29})`};
+  /* background: ${({ theme }) => theme.colors.richBlack}; */
+  box-shadow: -2px 0 2px #0003;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100vw)")};
   transition: transform 0.4s;
   transition-delay: ${({ open }) => (open ? "0" : ".3s")};
@@ -144,9 +143,9 @@ export const Navbar = () => {
       </Ul>
       <WrapperMenuIcon>
         {open ? (
-          <MdClose color="#3AAFB9" size={"2em"} onClick={toggleMenuIcon} />
+          <MdClose color="#3AAFB9" size={"24px"} onClick={toggleMenuIcon} />
         ) : (
-          <MdMenu color="#001011" size={"2em"} onClick={toggleMenuIcon} />
+          <MdMenu color="#001011" size={"24px"} onClick={toggleMenuIcon} />
         )}
       </WrapperMenuIcon>
     </Nav>

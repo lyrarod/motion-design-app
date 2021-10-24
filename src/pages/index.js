@@ -74,14 +74,11 @@ const ImageStyled = styled(Image)`
 
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.richBlackFogra29};
-  /* font-size: 40px; */
   line-height: 1;
-  margin-bottom: 10px;
+  margin: 8px 0;
   text-transform: uppercase;
-  border-top: 4px solid #001011;
-  border-bottom: 4px solid #001011;
+  border-left: 6px solid #001011;
   text-align: center;
-  letter-spacing: 1px;
 
   opacity: 0;
   animation-name: ${slide};
