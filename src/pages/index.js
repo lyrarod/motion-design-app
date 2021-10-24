@@ -1,45 +1,93 @@
 import styled, { keyframes } from "styled-components";
 
+import Image from "next/image";
+import heroImage from "../../public/assets/hero.svg";
+
 const slide = keyframes`
  from{
-   transform: translateX(100px);
-  }
-  
+   transform: translateX(-100px);
+  }  
   to{    
     transform: translateX(0);
     opacity: 1;
   }
 `;
 
-const Container = styled.div.attrs((props) => ({
-  color: props.theme.colors,
-}))`
+const fadein = keyframes`
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+`;
+
+const Container = styled.div`
   position: relative;
   width: 100%;
   min-height: 200vh;
+  overflow: hidden;
 `;
 
 const Hero = styled.div`
+  position: relative;
+
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   /* align-items: center; */
   justify-content: center;
   flex-direction: column;
-  padding: 0 2rem;
+  padding: 0 3rem;
   color: ${({ theme }) => theme.colors.richBlackFogra29};
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) =>
+      `linear-gradient(to left, ${theme.colors.verdigris}, ${theme.colors.electricBlue})`};
+
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 9%);
+
+    opacity: 0;
+    animation-name: ${fadein};
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+  }
+`;
+
+const ImageStyled = styled(Image)`
+  opacity: 0;
+  animation-name: ${fadein};
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
 `;
 
 const Title = styled.h1`
-  font-size: 40px;
+  color: ${({ theme }) => theme.colors.richBlackFogra29};
+  /* font-size: 40px; */
+  line-height: 1;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  border-top: 4px solid #001011;
+  border-bottom: 4px solid #001011;
+  text-align: center;
+  letter-spacing: 1px;
 
   opacity: 0;
-
   animation-name: ${slide};
   animation-duration: 1s;
   animation-timing-function: ease;
-  animation-delay: 0.3s;
+  animation-delay: 0s;
   animation-fill-mode: forwards;
 
   span {
@@ -52,27 +100,23 @@ const Title = styled.h1`
 `;
 
 const Text = styled.p`
-  /* color: silver; */
   font-size: 14px;
 
   opacity: 0;
-
   animation-name: ${slide};
   animation-duration: 1s;
   animation-timing-function: ease;
-  animation-delay: 0.6s;
+  animation-delay: 0.3s;
   animation-fill-mode: forwards;
 `;
 
-const Buttom = styled.button.attrs((props) => ({
-  color: props.theme.colors,
-}))`
-  background: ${({ color }) =>
-    `linear-gradient(to right, ${color.verdigris}, ${color.electricBlue})`};
+const Buttom = styled.button`
+  background: ${({ theme }) =>
+    `linear-gradient(to right, ${theme.colors.verdigris}, ${theme.colors.electricBlue})`};
 
-  box-shadow: 0 2px 2px #0002;
+  box-shadow: 0 3px 4px #0002;
 
-  color: ${({ color }) => color.richBlackFogra29};
+  color: ${({ theme }) => theme.colors.richBlackFogra29};
   padding: 10px;
   margin-top: 1rem;
   border: none;
@@ -83,27 +127,23 @@ const Buttom = styled.button.attrs((props) => ({
   font-weight: 700;
   letter-spacing: 4px;
   width: 100%;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 
   opacity: 0;
 
   animation-name: ${slide};
   animation-duration: 1s;
   animation-timing-function: ease;
-  animation-delay: 0.9s;
+  animation-delay: 0.6s;
   animation-fill-mode: forwards;
-
-  &:active {
-    transform: scale(0.99);
-  }
 
   ${({ theme }) => theme.media.desktop} {
     width: 40%;
-    background: ${({ color }) => color.verdigris};
+    background: ${({ theme }) => theme.colors.verdigris};
 
     &:hover {
       cursor: pointer;
-      background: ${({ color }) => color.electricBlue};
+      background: ${({ theme }) => theme.colors.electricBlue};
     }
   }
 `;
@@ -112,6 +152,7 @@ export default function Home() {
   return (
     <Container>
       <Hero>
+        <ImageStyled src={heroImage} alt="Hero Image" />
         <Title>
           <span>Hero</span> Section
         </Title>

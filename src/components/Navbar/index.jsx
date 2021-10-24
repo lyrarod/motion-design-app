@@ -7,18 +7,14 @@ import { MdMenu, MdClose } from "react-icons/md";
 const animate = keyframes`
   from{
     transform: translateY(-60px);
-
   }
-
   to{
     transform: translateY(0);
     opacity: 1;
   }
 `;
 
-const Nav = styled.nav.attrs((props) => ({
-  color: props.theme.colors,
-}))`
+const Nav = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
@@ -27,8 +23,8 @@ const Nav = styled.nav.attrs((props) => ({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: ${({ color }) => color.richBlack};
-  background: ${({ color }) => color.electricBlue};
+  color: ${({ theme }) => theme.colors.richBlack};
+  /* background: ${({ color }) => color.electricBlue}; */
   /* background: #3aafb9; */
   box-shadow: 0 2px 2px #1111;
   padding: 4px 2rem;
@@ -38,8 +34,8 @@ const Nav = styled.nav.attrs((props) => ({
 
   animation-name: ${animate};
   animation-duration: 2s;
-  animation-timing-function: ease;
-  animation-delay: 1.8s;
+  animation-timing-function: ease-in;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
 `;
 
